@@ -6,15 +6,18 @@ public class PlayerController : MonoBehaviour {
     private Rigidbody m_rb;
     public float speed = 10.0F;
     public float max_speed = 12.0F;
-	// Use this for initialization
-	void Start () {
+    public float jump_height = 75.0F;
+
+
+    // Use this for initialization
+    void Start() {
         m_rb = GetComponent<Rigidbody>();
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    }
+
+    // Update is called once per frame
+    void Update() {
+
+    }
     private void FixedUpdate()
     {
         float movement = Input.GetAxis("Horizontal");
@@ -23,6 +26,10 @@ public class PlayerController : MonoBehaviour {
             Mathf.Clamp(m_rb.velocity.x, -max_speed, max_speed),
             m_rb.velocity.y, m_rb.velocity.z
             );
+        //jumping mechanic
+        if (Input.GetKeyDown(KeyCode.Space))
+            m_rb.AddForce(0.0F, jump_height, 0.0F);    
+        
     }
 
 
